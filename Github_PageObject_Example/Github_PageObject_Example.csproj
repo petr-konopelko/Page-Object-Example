@@ -55,7 +55,10 @@
   <ItemGroup>
     <Compile Include="PajeObject\Pages\BasePage.cs" />
     <Compile Include="PajeObject\Pages\HomePage.cs" />
-    <Compile Include="PajeObject\Pages\SearchPage.cs" />
+    <Compile Include="PajeObject\Pages\SearchPages\CommitSearchPage.cs" />
+    <Compile Include="PajeObject\Pages\SearchPages\RepositorySearchPage.cs" />
+    <Compile Include="PajeObject\Pages\SearchPages\SearchPage.cs" />
+    <Compile Include="PajeObject\Pages\SearchPages\UserSearchPage.cs" />
     <Compile Include="PajeObject\SearchTests.cs" />
     <Compile Include="PajeObject\SearchType.cs" />
     <Compile Include="WithoutPageObject\WithoutPageObject.cs" />

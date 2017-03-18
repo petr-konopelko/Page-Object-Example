@@ -12,12 +12,12 @@ namespace Github_PageObject_Example.PajeObject
     {
         public HomePage(IWebDriver driver) : base(driver) { }
 
+        protected override By ElementIsloadedPage => By.Name("q");
+
         public HomePage Open()
         {
            Navigate("https://github.com/");
            return this;
         }
-
-        
     }
 }

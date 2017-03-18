@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using Github_PageObject_Example.PajeObject.Pages.SearchPages;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,15 @@ namespace Github_PageObject_Example.PajeObject.Pages
     public abstract class BasePage
     {
         [FindsBy(How = How.Name, Using = "q")]
-        private IWebElement SearchBoxElement { get; }
+        protected IWebElement SearchBoxElement;
 
         protected IWebDriver Driver { get; }
+
+        public BasePage(IWebDriver driver)
+        {
+            Driver = driver;
+            PageFactory.InitElements(driver, this);
+        }
 
         public String SearchBox
         {
@@ -25,23 +33,24 @@ namespace Github_PageObject_Example.PajeObject.Pages
             }
         }
 
-        public BasePage(IWebDriver driver)
-        {
-            Driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
-
         public void Navigate(string url)
         {
             Driver.Navigate().GoToUrl(url);
         }
 
-        public SearchPage Search(String searchTerms)
+        public RepositorySearchPage Search(String searchTerms)
         {
             SearchBox = searchTerms;
             SearchBoxElement.Submit();
-            return new SearchPage(Driver);
+            return new RepositorySearchPage(Driver);
         }
 
+        protected abstract By ElementIsloadedPage { get; }
+
+        protected void WaitForLoadingPage()
+        {
+            WebDriverWait waitLoading = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            IWebElement element = waitLoading.Until<IWebElement>(ExpectedConditions.ElementIsVisible(ElementIsloadedPage));
+        }
     }
 }

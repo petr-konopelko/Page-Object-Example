@@ -8,6 +8,7 @@ namespace Github_PageObject_Example.PajeObject
 {
     public enum SearchType
     {
+        Repositories,
         Code,
         Commits,
         Issues,
