@@ -15,7 +15,7 @@ namespace Github_PageObject_Example.PajeObject.Pages.SearchPages
             WaitForLoadingPage();
         }
 
-        [FindsBy(How = How.ClassName, Using = "menu")]
+        [FindsBy(How = How.ClassName, Using = "underline-nav")]
         private IWebElement _navBar;
 
         [FindsBy(How = How.ClassName, Using = "btn")]

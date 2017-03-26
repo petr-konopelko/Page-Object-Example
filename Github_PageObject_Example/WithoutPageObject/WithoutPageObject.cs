@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace Github_PageObject_Example
 {
     [TestFixture]
+    [Parallelizable]
     public class WithoutPageObject
     {
         private IWebDriver _driver;
@@ -26,15 +27,13 @@ namespace Github_PageObject_Example
         public void CheckByUserName()
         {
             _driver.Navigate().GoToUrl("https://github.com/");
-            _driver.FindElement(By.Name("q")).SendKeys("petr-konopelko");
+            _driver.FindElement(By.Name("q")).SendKeys("Petr Konopelko");
             _driver.FindElement(By.Name("q")).Submit();
             _driver.FindElement(By.PartialLinkText("User")).Click();
             WebDriverWait waitLoading = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             IWebElement searchresult = waitLoading.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("user_search_results")));
             Assert.AreEqual("petr-konopelko", searchresult.FindElement(By.TagName("em")).Text);
         }
-
-
 
         [Test]
         public void CheckByCommitName()
@@ -45,8 +44,8 @@ namespace Github_PageObject_Example
             _driver.FindElement(By.PartialLinkText("Commits")).Click();
             WebDriverWait waitLoading = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             IWebElement searchresult = waitLoading.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("commit_search_results")));
-            StringAssert.Contains("add js for draw suite summary", searchresult.FindElement(By.CssSelector(".commit-title ")).Text);
-            StringAssert.Contains("petr-konopelko", searchresult.FindElement(By.CssSelector(".commit-author-section")).Text);
+            StringAssert.Contains("add js for draw suite summary", searchresult.FindElement(By.CssSelector(".f5")).Text);
+            StringAssert.Contains("petr-konopelko", searchresult.FindElement(By.CssSelector(".f6")).Text);
         }
 
         [OneTimeTearDown]

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Github_PageObject_Example.PajeObject
 {
     [TestFixture]
+    [Parallelizable]
     public class SearchTests
     {
         private IWebDriver _driver;

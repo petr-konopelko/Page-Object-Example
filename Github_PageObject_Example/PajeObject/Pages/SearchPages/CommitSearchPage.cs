@@ -21,12 +21,12 @@ namespace Github_PageObject_Example.PajeObject.Pages.SearchPages
 
         public String GetCommitTitle()
         {
-            return _searchResult.FindElement(By.ClassName("commit-title")).Text;
+            return _searchResult.FindElement(By.ClassName("f5")).Text;
         }
 
         public String GetCommitDetail()
         {
-            return _searchResult.FindElement(By.ClassName("commit-author-section")).Text;
+            return _searchResult.FindElement(By.ClassName("f6")).Text;
         }
     }
 }
